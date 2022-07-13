@@ -36,8 +36,6 @@ struct configuration
     float dest_gamma = 0.0;
 };
 
-int validate_path(std::filesystem::path p);
-
 int main(int argc, char * argv[]) {
     char identifier;
     cag_option_context context;
@@ -73,7 +71,7 @@ int main(int argc, char * argv[]) {
     Image_Handler processor;
 
     int total_files = processor.populate_image_queue(config.src);
-    if(total_files >= 0) {
+    if(total_files > 0) {
        cout << "Total .jpg's found: " << total_files << "\n";
     }
     else {
