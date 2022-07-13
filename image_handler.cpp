@@ -18,7 +18,6 @@ int Image_Handler::populate_image_queue(std::filesystem::path src) {
     };
 
     try {
-
         for (auto const &dir_entry: std::filesystem::directory_iterator{src}) {
             if (dir_entry.is_regular_file()) {
                 if (dir_entry.path().extension() == ".jpg") {
@@ -43,7 +42,10 @@ int Image_Handler::process_images(const float src_gamma, const float dest_gamma)
             return -1;
         }
 
-        corrector.calc_inverse_gamma(src_image, linear_image, src_gamma);
+        if(corrector.calc_inverse_gamma(src_image, linear_image, src_gamma) == -1) {
+            return -1;
+        }
+
         corrector.apply_gamma(linear_image, corrected_image, dest_gamma);
 
         std::filesystem::path output {p.parent_path() / "Processed" / p.filename()};

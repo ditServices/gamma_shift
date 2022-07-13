@@ -5,6 +5,11 @@
 #include "gamma_correct.h"
 
 int Gamma_Correct::calc_inverse_gamma(const Mat &src, Mat &dest, const float gamma) {
+
+    if(gamma <= 0) {
+        return -1;
+    }
+
     float inverse_gamma = 1 / gamma;
     Mat table(1, 256, CV_8U);
     uchar *p = table.ptr();

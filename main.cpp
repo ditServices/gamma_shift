@@ -65,8 +65,7 @@ int main(int argc, char * argv[]) {
         }
     }
 
-    std::cout << "Processing: " << config.src << "\n" << "Gamma: " << config.source_gamma << " to "
-                  << config.dest_gamma << "\n";
+    std::cout << "Processing: " << config.src << "\n";
 
     Image_Handler processor;
 
@@ -79,7 +78,10 @@ int main(int argc, char * argv[]) {
        return EXIT_FAILURE;
     }
 
-    processor.process_images(config.source_gamma, config.dest_gamma);
+    if (processor.process_images(config.source_gamma, config.dest_gamma) == -1) {
+        cout << "Error applying transformation.\n";
+        return EXIT_FAILURE;
+    }
 
     return 0;
 }
