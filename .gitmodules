@@ -1,0 +1,6 @@
+[submodule "lib/cargs"]
+	path = lib/cargs
+	url = https://github.com/likle/cargs
+[submodule "tests/lib/googletest"]
+	path = tests/lib/googletest
+	url = https://github.com/google/googletest
